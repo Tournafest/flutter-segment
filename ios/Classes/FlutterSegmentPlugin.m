@@ -2,6 +2,7 @@
 #import <Segment/SEGAnalytics.h>
 #import <Segment/SEGContext.h>
 #import <Segment/SEGMiddleware.h>
+#import <Segment-WebEngage/WEGSegmentIntegrationFactory.h>
 #import <Segment_Amplitude/SEGAmplitudeIntegrationFactory.h>
 
 @implementation FlutterSegmentPlugin
