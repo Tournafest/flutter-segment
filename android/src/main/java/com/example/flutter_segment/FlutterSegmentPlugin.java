@@ -16,6 +16,7 @@ import com.segment.analytics.Middleware;
 import com.segment.analytics.integrations.BasePayload;
 import com.segment.analytics.android.integrations.amplitude.AmplitudeIntegration;
 import static com.segment.analytics.Analytics.LogLevel;
+import com.webengage.sdk.android.integrations.segment.WebEngageIntegration;
 
 import java.util.LinkedHashMap;
 import java.util.HashMap;
@@ -85,6 +86,10 @@ public class FlutterSegmentPlugin implements MethodCallHandler, FlutterPlugin {
 
       if (options.isAmplitudeIntegrationEnabled()) {
         analyticsBuilder.use(AmplitudeIntegration.FACTORY);
+      }
+
+      if (options.isWebEngageIntegrationEnabled()) {
+        analyticsBuilder.use(WebEngageIntegration.FACTORY);
       }
 
       // Here we build a middleware that just appends data to the current context
