@@ -2,7 +2,7 @@
 #import <Segment/SEGAnalytics.h>
 #import <Segment/SEGContext.h>
 #import <Segment/SEGMiddleware.h>
-#import <Segment-WebEngage/WEGSegmentIntegrationFactory.h>
+#import <Segment_WebEngage/WEGSegmentIntegrationFactory.h>
 #import <Segment_Amplitude/SEGAmplitudeIntegrationFactory.h>
 
 @implementation FlutterSegmentPlugin
@@ -360,7 +360,7 @@ static BOOL wasSetupFromFile = NO;
     }
 
     if (isWebEngageIntegrationEnabled) {
-      [configuration use:[WEGSegmentIntegrationFactory instanceWithApplication:application launchOptions:launchOptions]];
+      [configuration use:[WEGSegmentIntegrationFactory instanceWithApplication:UIApplication.sharedApplication launchOptions:nil]];
     }
 
     return configuration;
@@ -379,7 +379,7 @@ static BOOL wasSetupFromFile = NO;
     }
 
     if (isWebEngageIntegrationEnabled) {
-      [configuration use:[WEGSegmentIntegrationFactory instanceWithApplication:application launchOptions:launchOptions]];
+      [configuration use:[WEGSegmentIntegrationFactory instanceWithApplication:UIApplication.sharedApplication launchOptions:nil]];
     }
 
     return configuration;
