@@ -594,3 +594,9 @@ healthchecksdb
 MigrationBackup/
 
 # End of https://www.gitignore.io/api/git,dart,flutter,intellij,webstorm,visualstudio
+
+# Not needed macOS generated files
+.DS_Store
+example/.DS_Store
+example/android/.DS_Store
+example/ios/.DS_Store

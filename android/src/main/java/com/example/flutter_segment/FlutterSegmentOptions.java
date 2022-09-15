@@ -8,12 +8,16 @@ public class FlutterSegmentOptions {
     private final String writeKey;
     private final Boolean trackApplicationLifecycleEvents;
     private final Boolean amplitudeIntegrationEnabled;
+    private final Boolean webEngageIntegrationEnabled;
+    private final Boolean cleverTapIntegrationEnabled;
     private final Boolean debug;
 
-    public  FlutterSegmentOptions(String writeKey, Boolean trackApplicationLifecycleEvents, Boolean amplitudeIntegrationEnabled,Boolean debug) {
+    public FlutterSegmentOptions(String writeKey, Boolean trackApplicationLifecycleEvents, Boolean amplitudeIntegrationEnabled, Boolean webEngageIntegrationEnabled, Boolean cleverTapIntegrationEnabled, Boolean debug) {
         this.writeKey = writeKey;
         this.trackApplicationLifecycleEvents = trackApplicationLifecycleEvents;
         this.amplitudeIntegrationEnabled = amplitudeIntegrationEnabled;
+        this.webEngageIntegrationEnabled = webEngageIntegrationEnabled;
+        this.cleverTapIntegrationEnabled = cleverTapIntegrationEnabled;
         this.debug = debug;
     }
 
@@ -29,6 +33,14 @@ public class FlutterSegmentOptions {
         return amplitudeIntegrationEnabled;
     }
 
+    public Boolean isWebEngageIntegrationEnabled() {
+        return webEngageIntegrationEnabled;
+    }
+
+    public Boolean isCleverTapIntegrationEnabled() {
+        return cleverTapIntegrationEnabled;
+    }
+
     public Boolean getDebug() {
         return debug;
     }
@@ -37,16 +49,20 @@ public class FlutterSegmentOptions {
         String writeKey = bundle.getString("com.claimsforce.segment.WRITE_KEY");
         Boolean trackApplicationLifecycleEvents = bundle.getBoolean("com.claimsforce.segment.TRACK_APPLICATION_LIFECYCLE_EVENTS");
         Boolean isAmplitudeIntegrationEnabled = bundle.getBoolean("com.claimsforce.segment.ENABLE_AMPLITUDE_INTEGRATION", false);
+        Boolean isWebEngageIntegrationEnabled = bundle.getBoolean("com.claimsforce.segment.ENABLE_WEBENGAGE_INTEGRATION", false);
+        Boolean isCleverTapIntegrationEnabled = bundle.getBoolean("com.claimsforce.segment.ENABLE_CLEVERTAP_INTEGRATION", false);
         Boolean debug = bundle.getBoolean("com.claimsforce.segment.DEBUG", false);
-        return new FlutterSegmentOptions(writeKey, trackApplicationLifecycleEvents, isAmplitudeIntegrationEnabled, debug);
+        return new FlutterSegmentOptions(writeKey, trackApplicationLifecycleEvents, isAmplitudeIntegrationEnabled, isWebEngageIntegrationEnabled, isCleverTapIntegrationEnabled, debug);
     }
 
     static FlutterSegmentOptions create(HashMap<String, Object> options) {
         String writeKey = (String) options.get("writeKey");
         Boolean trackApplicationLifecycleEvents = (Boolean) options.get("trackApplicationLifecycleEvents");
         Boolean isAmplitudeIntegrationEnabled = orFalse((Boolean) options.get("amplitudeIntegrationEnabled"));
+        Boolean isWebEngageIntegrationEnabled = orFalse((Boolean) options.get("webEngageIntegrationEnabled"));
+        Boolean isCleverTapIntegrationEnabled = orFalse((Boolean) options.get("cleverTapIntegrationEnabled"));
         Boolean debug = orFalse((Boolean) options.get("debug"));
-        return new FlutterSegmentOptions(writeKey, trackApplicationLifecycleEvents, isAmplitudeIntegrationEnabled, debug);
+        return new FlutterSegmentOptions(writeKey, trackApplicationLifecycleEvents, isAmplitudeIntegrationEnabled, isWebEngageIntegrationEnabled, isCleverTapIntegrationEnabled, debug);
     }
 
     private static Boolean orFalse(Boolean value) {

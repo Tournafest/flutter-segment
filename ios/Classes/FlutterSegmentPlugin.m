@@ -2,6 +2,7 @@
 #import <Segment/SEGAnalytics.h>
 #import <Segment/SEGContext.h>
 #import <Segment/SEGMiddleware.h>
+#import <Segment_WebEngage/WEGSegmentIntegrationFactory.h>
 #import <Segment_Amplitude/SEGAmplitudeIntegrationFactory.h>
 
 @implementation FlutterSegmentPlugin
@@ -347,6 +348,7 @@ static BOOL wasSetupFromFile = NO;
     NSString *writeKey = [dict objectForKey: @"com.claimsforce.segment.WRITE_KEY"];
     BOOL trackApplicationLifecycleEvents = [[dict objectForKey: @"com.claimsforce.segment.TRACK_APPLICATION_LIFECYCLE_EVENTS"] boolValue];
     BOOL isAmplitudeIntegrationEnabled = [[dict objectForKey: @"com.claimsforce.segment.ENABLE_AMPLITUDE_INTEGRATION"] boolValue];
+    BOOL isWebEngageIntegrationEnabled = [[dict objectForKey: @"com.claimsforce.segment.ENABLE_WEBENGAGE_INTEGRATION"] boolValue];
     if(!writeKey) {
         return nil;
     }
@@ -357,6 +359,10 @@ static BOOL wasSetupFromFile = NO;
       [configuration use:[SEGAmplitudeIntegrationFactory instance]];
     }
 
+    if (isWebEngageIntegrationEnabled) {
+      [configuration use:[WEGSegmentIntegrationFactory instanceWithApplication:UIApplication.sharedApplication launchOptions:nil]];
+    }
+
     return configuration;
 }
 
@@ -364,11 +370,16 @@ static BOOL wasSetupFromFile = NO;
     NSString *writeKey = [dict objectForKey: @"writeKey"];
     BOOL trackApplicationLifecycleEvents = [[dict objectForKey: @"trackApplicationLifecycleEvents"] boolValue];
     BOOL isAmplitudeIntegrationEnabled = [[dict objectForKey: @"amplitudeIntegrationEnabled"] boolValue];
+    BOOL isWebEngageIntegrationEnabled = [[dict objectForKey: @"webEngageIntegrationEnabled"] boolValue];
     SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:writeKey];
     configuration.trackApplicationLifecycleEvents = trackApplicationLifecycleEvents;
 
     if (isAmplitudeIntegrationEnabled) {
       [configuration use:[SEGAmplitudeIntegrationFactory instance]];
+    }
+
+    if (isWebEngageIntegrationEnabled) {
+      [configuration use:[WEGSegmentIntegrationFactory instanceWithApplication:UIApplication.sharedApplication launchOptions:nil]];
     }
 
     return configuration;

@@ -16,6 +16,9 @@ import com.segment.analytics.Middleware;
 import com.segment.analytics.integrations.BasePayload;
 import com.segment.analytics.android.integrations.amplitude.AmplitudeIntegration;
 import static com.segment.analytics.Analytics.LogLevel;
+import com.segment.analytics.android.integrations.clevertap.CleverTapIntegration;
+import com.webengage.sdk.android.integrations.segment.WebEngageIntegration;
+import com.webengage.sdk.android.WebEngageConfig;
 
 import java.util.LinkedHashMap;
 import java.util.HashMap;
@@ -85,6 +88,17 @@ public class FlutterSegmentPlugin implements MethodCallHandler, FlutterPlugin {
 
       if (options.isAmplitudeIntegrationEnabled()) {
         analyticsBuilder.use(AmplitudeIntegration.FACTORY);
+      }
+
+      if (options.isWebEngageIntegrationEnabled()) {
+        WebEngageConfig webEngageConfig = new WebEngageConfig.Builder()
+                .setDebugMode(true)
+                .build();
+        analyticsBuilder.use(WebEngageIntegration.FACTORY.withWebEngageConfig(webEngageConfig));
+      }
+
+      if (options.isCleverTapIntegrationEnabled()) {
+        analyticsBuilder.use(CleverTapIntegration.FACTORY);
       }
 
       // Here we build a middleware that just appends data to the current context
