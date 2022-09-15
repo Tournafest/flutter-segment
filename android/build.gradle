@@ -37,6 +37,7 @@ android {
         implementation 'com.webengage:android-segment:2.+'
         implementation 'com.google.firebase:firebase-messaging:22.0.0'
         implementation 'com.segment.analytics.android:analytics:4.10.0'
+        implementation 'com.clevertap.android:clevertap-segment-android:+'
         implementation 'com.segment.analytics.android.integrations:amplitude:3.0.3'
     }
 }

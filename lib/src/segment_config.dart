@@ -4,6 +4,7 @@ class SegmentConfig {
     this.trackApplicationLifecycleEvents = false,
     this.amplitudeIntegrationEnabled = false,
     this.webEngageIntegrationEnabled = false,
+    this.cleverTapIntegrationEnabled = false,
     this.debug = false,
   });
 
@@ -11,6 +12,7 @@ class SegmentConfig {
   final bool trackApplicationLifecycleEvents;
   final bool amplitudeIntegrationEnabled;
   final bool webEngageIntegrationEnabled;
+  final bool cleverTapIntegrationEnabled;
   final bool debug;
 
   Map<String, dynamic> toMap() {
@@ -19,6 +21,7 @@ class SegmentConfig {
       'trackApplicationLifecycleEvents': trackApplicationLifecycleEvents,
       'amplitudeIntegrationEnabled': amplitudeIntegrationEnabled,
       'webEngageIntegrationEnabled': webEngageIntegrationEnabled,
+      'cleverTapIntegrationEnabled': cleverTapIntegrationEnabled,
       'debug': debug,
     };
   }
